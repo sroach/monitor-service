@@ -12,5 +12,6 @@ monitor:
   urls:
     - https://roach.gy/ping.txt
     - https://roach.gy/extension/api/ping
+    - https://roach.gy/extension/actuator/health
   scheduler:
     intervalSeconds: 30
