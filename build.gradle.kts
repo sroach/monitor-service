@@ -1,38 +1,61 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("org.springframework.boot") version "3.4.5"
-    id("io.spring.dependency-management") version "1.1.4"
     kotlin("jvm") version "2.1.20"
     kotlin("plugin.spring") version "2.1.20"
-    id("org.cyclonedx.bom") version "1.8.1" // Equivalent to cyclonedx-maven-plugin
-    id("org.graalvm.buildtools.native") version "0.9.28" // Equivalent to native-maven-plugin
+    id("org.cyclonedx.bom") version "1.10.0"
+    id("io.spring.dependency-management") version "1.1.7"
+    id("org.graalvm.buildtools.native") version "0.10.6"
+
 }
 
 group = "gy.roach.monitor"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_21
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
+    }
+}
+// Set the GraalVM home directory
+val graalVmHome = System.getenv("GRAALVM_HOME") ?: ""
+tasks.withType<org.gradle.api.tasks.JavaExec> {
+    jvmArgs = listOf("-XX:+UnlockExperimentalVMOptions", "-XX:+UseJVMCINativeLibrary")
+    environment("JAVA_HOME", graalVmHome)
+}
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(23))
+        // Set the GraalVM home directory
+        vendor.set(JvmVendorSpec.matching("GraalVM"))
+        implementation.set(JvmImplementation.VENDOR_SPECIFIC)
+    }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
     }
 }
 
