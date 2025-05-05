@@ -1,0 +1,16 @@
+server:
+  port: 7200
+  servlet:
+    context-path: /monitor
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, loggers,metrics,beans,mappings,threaddump,heapdump,swagger-ui,sbom
+
+monitor:
+  urls:
+    - https://roach.gy/ping.txt
+    - https://roach.gy/extension/api/ping
+  scheduler:
+    intervalSeconds: 30
