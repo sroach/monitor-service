@@ -10,13 +10,13 @@ management:
 
 monitor:
   urls:
-    - name: Roach Ping
+    - name: Roach.gy Site
       url: https://roach.gy/ping.txt
-    - name: Roach API Ping
+    - name: Docops Extension
       url: https://roach.gy/extension/api/ping
-    - name: Roach Health
+    - name: Docops Extension Health
       url: https://roach.gy/extension/actuator/health
   scheduler:
     intervalSeconds: 30
   api:
-    url: http://localhost:7201/monitor-persistence/api/records
+    url: https://roach.gy/monitor-persistence/api/records
