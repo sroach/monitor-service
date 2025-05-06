@@ -17,7 +17,7 @@ kotlin {
     }
 }
 // Set the GraalVM home directory
-val graalVmHome = System.getenv("GRAALVM_HOME") ?: ""
+val graalVmHome = System.getenv("GRAALVM_HOME") ?: "/Users/steveroach/Library/Java/JavaVirtualMachines/graalvm-jdk-23.0.2/Contents/Home"
 tasks.withType<org.gradle.api.tasks.JavaExec> {
     jvmArgs = listOf("-XX:+UnlockExperimentalVMOptions", "-XX:+UseJVMCINativeLibrary")
     environment("JAVA_HOME", graalVmHome)
@@ -43,6 +43,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

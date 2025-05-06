@@ -97,7 +97,11 @@ mvn clean package
 java -jar build/libs/service-0.0.1-SNAPSHOT.jar
 ```
 
+### Graalvm Native
 
+```bash 
+./gradlew bootBuildImage
+```
 ## Endpoints
 
 The service exposes the following endpoints:

@@ -8,10 +8,15 @@ import org.springframework.context.annotation.Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "monitor")
 class MonitorConfig {
-    var urls: List<String> = emptyList()
+    var urls: List<UrlEntry> = emptyList()
     var scheduler: SchedulerConfig = SchedulerConfig()
 
     class SchedulerConfig {
         var intervalSeconds: Long = 30
+    }
+
+    class UrlEntry {
+        var name: String = ""
+        var url: String = ""
     }
 }

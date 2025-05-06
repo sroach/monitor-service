@@ -1,0 +1,26 @@
+[
+  {
+    "name": "gy.roach.monitor.service.model.MonitorCheckRecord",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  },
+  {
+    "name": "com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer",
+    "allDeclaredFields": true,
+    "allDeclaredMethods": true,
+    "allDeclaredConstructors": true
+  }
+]

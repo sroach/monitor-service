@@ -10,8 +10,13 @@ management:
 
 monitor:
   urls:
-    - https://roach.gy/ping.txt
-    - https://roach.gy/extension/api/ping
-    - https://roach.gy/extension/actuator/health
+    - name: Roach Ping
+      url: https://roach.gy/ping.txt
+    - name: Roach API Ping
+      url: https://roach.gy/extension/api/ping
+    - name: Roach Health
+      url: https://roach.gy/extension/actuator/health
   scheduler:
     intervalSeconds: 30
+  api:
+    url: http://localhost:7201/monitor-persistence/api/records
